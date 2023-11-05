@@ -1,0 +1,8 @@
+#include "LifeSimulator.hpp"
+#pragma once
+
+class Renderer
+{
+  public:
+    virtual void render(const LifeSimulator& simulation) = 0;
+};
