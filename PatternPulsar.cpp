@@ -2,15 +2,19 @@
 
 std::uint8_t PatternPulsar::getSizeX() const
 {
-    return std::uint8_t();
+    return 13;
 }
 
 std::uint8_t PatternPulsar::getSizeY() const
 {
-    return std::uint8_t();
+    return 13;
 }
 
 bool PatternPulsar::getCell(std::uint8_t x, std::uint8_t y) const
 {
-    return false;
+    if (x > getSizeX() - 1 || y > getSizeY() - 1)
+    {
+        return false;
+    }
+    return dimensions[y][x];
 }

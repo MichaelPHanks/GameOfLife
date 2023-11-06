@@ -6,6 +6,7 @@ LifeSimulator::LifeSimulator(std::uint8_t sizeX, std::uint8_t sizeY) :
     width(sizeX),
     height(sizeY)
 {
+    std::cout << "eyah";
     for (int i = 0; i < height; i++)
     {
         std::vector<bool> newVec;
