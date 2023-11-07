@@ -12,5 +12,9 @@ std::uint8_t PatternBlock::getSizeY() const
 
 bool PatternBlock::getCell(std::uint8_t x, std::uint8_t y) const
 {
-    return true;
+    if (x > getSizeX() - 1 || y > getSizeY() - 1)
+    {
+        return false;
+    }
+    return dimensions[y][x];
 }

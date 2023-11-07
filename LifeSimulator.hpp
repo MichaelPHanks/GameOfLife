@@ -19,5 +19,5 @@ class LifeSimulator
     const std::uint8_t width;
     const std::uint8_t height;
     std::vector<std::vector<bool>> map;
-    std::uint8_t getNeighbors(unsigned int y, unsigned int x) const;
+    std::uint8_t getNeighbors(std::uint8_t y, std::uint8_t x) const;
 };

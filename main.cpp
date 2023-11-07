@@ -13,14 +13,12 @@ int main()
 
     LifeSimulator sim = LifeSimulator(static_cast<std::uint8_t>(rlutil::tcols()), static_cast<std::uint8_t>(rlutil::trows()));
     sim.insertPattern(PatternGosperGliderGun(), 1, 1);
-    std::cout << "Width: " << sim.getSizeX() << " Height: " << sim.getSizeY();
+    rlutil::cls();
+
     while (true)
     {
-        rlutil::hidecursor();
-        sim.update();
         console.render(sim);
-        rlutil::showcursor();
-        std::cout << std::flush;
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        sim.update();
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 }

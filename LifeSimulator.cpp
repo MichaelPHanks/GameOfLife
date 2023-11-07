@@ -1,17 +1,17 @@
 #include "LifeSimulator.hpp"
 
+#include <cstdint>
 #include <iostream>
 #include <vector>
 LifeSimulator::LifeSimulator(std::uint8_t sizeX, std::uint8_t sizeY) :
     width(sizeX),
     height(sizeY)
 {
-    std::cout << "eyah";
-    for (int i = 0; i < height; i++)
+    for (unsigned int i = 0; i < height; i++)
     {
         std::vector<bool> newVec;
         map.push_back(newVec);
-        for (int j = 0; j < width; j++)
+        for (unsigned int j = 0; j < width; j++)
         {
             map[i].push_back(false);
         }
@@ -21,12 +21,12 @@ LifeSimulator::LifeSimulator(std::uint8_t sizeX, std::uint8_t sizeY) :
 void LifeSimulator::insertPattern(const Pattern& pattern, std::uint8_t startX, std::uint8_t startY)
 {
     std::uint8_t temp = startX;
-    for (int i = 0; i < pattern.getSizeY(); i++)
+    for (std::uint8_t i = 0; i < pattern.getSizeY(); i++)
     {
         startX = temp;
-        for (int j = 0; j < pattern.getSizeX(); j++)
+        for (std::uint8_t j = 0; j < pattern.getSizeX(); j++)
         {
-            if (startX >= 0 && startX < width && startY >= 0 && startY < height)
+            if (startX < width && startY < height)
             {
 
                 map[startY][startX] = pattern.getCell(j, i);
@@ -35,20 +35,9 @@ void LifeSimulator::insertPattern(const Pattern& pattern, std::uint8_t startX, s
         }
         startY++;
     }
-    /*for (int k = 0; k < getSizeY(); k++)
-    {
-        for (int l = 0; l < getSizeX(); l++)
-        {
-            std::cout << map[k][l];
-        }
-        std::cout << std::endl;
-    }
-    std::cout << std::endl;
-    std::cout << std::endl;
-    std::cout << std::endl;*/
 }
 
-std::uint8_t LifeSimulator::getNeighbors(unsigned int y, unsigned int x) const
+std::uint8_t LifeSimulator::getNeighbors(std::uint8_t y, std::uint8_t x) const
 {
     std::uint8_t total = 0;
     if (x > 0)
@@ -115,9 +104,9 @@ std::uint8_t LifeSimulator::getNeighbors(unsigned int y, unsigned int x) const
 void LifeSimulator::update()
 {
     std::vector<std::vector<bool>> newMap = map;
-    for (unsigned int i = 0; i < height; i++)
+    for (std::uint8_t i = 0; i < height; i++)
     {
-        for (unsigned int j = 0; j < width; j++)
+        for (std::uint8_t j = 0; j < width; j++)
         {
             std::uint8_t totalNeighbors = getNeighbors(i, j);
             if (map[i][j])
@@ -145,12 +134,12 @@ void LifeSimulator::update()
 
 std::uint8_t LifeSimulator::getSizeX() const
 {
-    return width;
+    return std::uint8_t(width);
 }
 
 std::uint8_t LifeSimulator::getSizeY() const
 {
-    return height;
+    return std::uint8_t(height);
 }
 
 bool LifeSimulator::getCell(std::uint8_t x, std::uint8_t y) const

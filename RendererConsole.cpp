@@ -19,15 +19,18 @@ RendererConsole::RendererConsole()
 
 void RendererConsole::render(const LifeSimulator& simulation)
 {
+    rlutil::hidecursor();
 
-    for (int i = 0; i < simulation.getSizeY(); i++)
+    for (std::uint8_t i = 0; i < simulation.getSizeY(); i++)
     {
-        for (int j = 0; j < simulation.getSizeX(); j++)
+        for (std::uint8_t j = 0; j < simulation.getSizeX(); j++)
         {
-            bool cell = simulation.getCell(i, j);
+
+            bool cell = simulation.getCell(j, i);
             if (map[i][j] != cell)
             {
-                rlutil::locate(i, j);
+
+                rlutil::locate(j, i);
                 if (cell)
                 {
                     rlutil::setChar('X');
@@ -40,4 +43,6 @@ void RendererConsole::render(const LifeSimulator& simulation)
             map[i][j] = cell;
         }
     }
+    rlutil::showcursor();
+    std::cout << std::flush;
 }
